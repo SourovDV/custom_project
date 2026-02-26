@@ -3,4 +3,5 @@ class AppPages{
   static final String homeScreen = '/home';
   static final String loginScreen = '/login';
   static final String registerScreen = '/register';
+  static final String productScreen = '/product';
 }

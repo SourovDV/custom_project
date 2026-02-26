@@ -1,9 +1,11 @@
 import 'package:custom_project/app/appColor.dart';
 import 'package:custom_project/feature/common/common_button.dart';
 import 'package:custom_project/feature/common/common_field.dart';
+import 'package:custom_project/feature/screen/controller/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
 
   @override
@@ -43,7 +45,7 @@ class LoginView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              CommonButton(text: 'Sign In'),
+              CommonButton(text: 'Sign In',data:()=>controller.moveToProduct(),),
               const SizedBox(height: 50),
         
               Text("Create New Account"),
