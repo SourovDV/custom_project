@@ -1,6 +1,8 @@
 import 'package:custom_project/app/app_pages.dart';
 import 'package:custom_project/feature/screen/bindings/splash_bindings.dart';
+import 'package:custom_project/feature/screen/view/details_view.dart';
 import 'package:custom_project/feature/screen/view/home_screen.dart';
+import 'package:custom_project/feature/screen/view/items_view.dart';
 import 'package:custom_project/feature/screen/view/login_view.dart';
 import 'package:custom_project/feature/screen/view/product_view.dart';
 import 'package:custom_project/feature/screen/view/register_view.dart';
@@ -14,6 +16,8 @@ class AppRoutes{
     GetPage(name: AppPages.loginScreen, page:()=>LoginView(),binding: SplashBindings()),
     GetPage(name: AppPages.registerScreen, page:()=>RegisterView(),binding: SplashBindings()),
     GetPage(name: AppPages.productScreen, page:()=>ProductView(),binding: SplashBindings()),
+    GetPage(name: AppPages.detailsPage, page:()=>DetailsView(),binding: SplashBindings()),
+    GetPage(name: AppPages.itemView, page:()=>ItemsView(),binding: SplashBindings()),
 
   ];
 

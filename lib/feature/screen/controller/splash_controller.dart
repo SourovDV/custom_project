@@ -5,7 +5,7 @@ class SplashController extends GetxController{
 
   Future moveToHomePage()async{
     Future.delayed(Duration(seconds: 3));
-    Get.offNamed(AppPages.homeScreen);
+    Get.offNamed(AppPages.itemView);
   }
 
   @override
