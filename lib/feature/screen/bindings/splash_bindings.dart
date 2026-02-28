@@ -1,3 +1,4 @@
+import 'package:custom_project/feature/screen/controller/card_controller.dart';
 import 'package:custom_project/feature/screen/controller/details_controller.dart';
 import 'package:custom_project/feature/screen/controller/home_controller.dart';
 import 'package:custom_project/feature/screen/controller/item_controller.dart';
@@ -17,6 +18,7 @@ class SplashBindings extends Bindings{
     Get.put(ProductController());
     Get.put(DetailsController());
     Get.put(ItemController());
+    Get.put(CardController());
   }
 
 }

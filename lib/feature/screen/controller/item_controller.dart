@@ -1,3 +1,4 @@
+import 'package:custom_project/feature/screen/view/card_view.dart';
 import 'package:custom_project/feature/screen/view/login_view.dart';
 import 'package:custom_project/feature/screen/view/product_view.dart';
 import 'package:custom_project/feature/screen/view/register_view.dart';
@@ -9,7 +10,7 @@ class ItemController extends GetxController{
   final List items = [
     ProductView(),
     LoginView(),
-    RegisterView(),
+    CardView(),
     SplashView(),
   ];
 

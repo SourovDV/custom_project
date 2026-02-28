@@ -3,6 +3,6 @@ import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   void moveToProduct() {
-    Get.toNamed(AppPages.productScreen);
+    Get.toNamed(AppPages.itemView);
   }
 }
