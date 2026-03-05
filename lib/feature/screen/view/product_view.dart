@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_project/app/appColor.dart';
 import 'package:custom_project/feature/screen/controller/products_controller.dart';
 import 'package:flutter/material.dart';
@@ -74,14 +75,14 @@ class ProductView extends GetView<ProductController> {
         appBar: AppBar(leading: Icon(Icons.menu), actions: [Icon(Icons.search)]),
         body: Column(
           children: [
-            CarouselSlider.builder(
-              itemCount: 5,
+            controller.slider.isEmpty ? Center(child: CircularProgressIndicator()) : CarouselSlider.builder(
+              itemCount: controller.slider.length,
               itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex){
                 return Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(image: NetworkImage(sliderData[itemIndex]),
-                    fit: BoxFit.cover),
+                    image: DecorationImage(image: NetworkImage(controller.slider[itemIndex]["image"]),
+                        fit: BoxFit.cover),
                   ),
                 );
               },
@@ -103,25 +104,33 @@ class ProductView extends GetView<ProductController> {
               Text("see All ")
             ],),
             SizedBox(height: 10,),
-            SizedBox(
-              height: 80,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                  primary: false,
-                  itemCount: showData.length,
-                  itemBuilder: (context,index){
-                  return Container(
-                    margin: EdgeInsets.only(right: 10),
-                    width: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.grey,
-                      image: DecorationImage(image:AssetImage(showData[index]['icon']!),fit: BoxFit.cover)
-                    ),
-                  );
-              }),
-            ),
+            StreamBuilder(stream: FirebaseFirestore.instance.collection("collection").snapshots(),
+                builder: (_,snapshot){
+                    if(snapshot.connectionState == ConnectionState.waiting){
+                      return Center(child: CircularProgressIndicator(),);
+                    }
+                    else{
+                      return SizedBox(
+                        height: 80,
+                        child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            shrinkWrap: true,
+                            primary: false,
+                            itemCount: snapshot.data!.docs.length,
+                            itemBuilder: (context,index){
+                              return Container(
+                                margin: EdgeInsets.only(right: 10),
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: Colors.grey,
+                                ),
+                                child: Image.network(snapshot.data!.docs[index]["icon"]),
+                              );
+                            }),
+                      );
+                    }
+                }),
             SizedBox(height: 20,),
             Expanded(
                child: GridView.builder(

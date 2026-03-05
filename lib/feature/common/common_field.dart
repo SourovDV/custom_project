@@ -8,7 +8,7 @@ class CommonTextField extends StatelessWidget {
   final Icon icons;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       decoration: InputDecoration(
         hintText: text,
         prefixIcon:icons,

@@ -12,7 +12,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: TextTheme(
           titleLarge: TextStyle(fontSize: 25,color:AppColor.primaryColor,fontWeight: FontWeight.bold)
-        )
+        ),
+        inputDecorationTheme:InputDecorationThemeData(
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding:
+            const EdgeInsets.symmetric(vertical: 18),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.initialRoutes,

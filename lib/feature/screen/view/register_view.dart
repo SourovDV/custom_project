@@ -1,9 +1,10 @@
 import 'package:custom_project/app/appColor.dart';
 import 'package:custom_project/feature/common/common_button.dart';
-import 'package:custom_project/feature/common/common_field.dart';
+import 'package:custom_project/feature/screen/controller/register_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class RegisterView extends StatelessWidget {
+class RegisterView extends GetView<RegisterController> {
   const RegisterView({super.key});
 
   @override
@@ -29,13 +30,42 @@ class RegisterView extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20,),
-              CommonTextField(text: "Email", icons: Icon(Icons.email_outlined)),
-              SizedBox(height: 10,),
-              CommonTextField(text: "Password", icons: Icon(Icons.email_outlined)),
-              SizedBox(height: 10,),
-              CommonTextField(text: "Confirm Password", icons: Icon(Icons.password)),
-              const SizedBox(height: 20),
-              CommonButton(text: 'Sign Un'),
+             Form(
+                 key: controller.key,
+                 child: Column(
+               children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Email",
+                      prefixIcon: Icon(Icons.email_outlined)
+                    ),
+                    controller: controller.emailController,
+                  ),
+                 SizedBox(height: 10,),
+                 TextFormField(
+                   decoration: InputDecoration(
+                       hintText: "Password",
+                       prefixIcon: Icon(Icons.email_outlined)
+                   ),
+                   controller: controller.passwordController,
+                 ),
+                 SizedBox(height: 10,),
+                 TextFormField(
+                   decoration: InputDecoration(
+                       hintText: "Confirm Password",
+                       prefixIcon: Icon(Icons.email_outlined)
+                   ),
+                   controller: controller.confirmPassword,
+                 ),
+                 SizedBox(height: 10,),
+
+               ],
+             )),
+              Container(
+                  color: AppColor.primaryColor,
+                  child: CommonButton(text: 'Sign Un',data: (){
+                    controller.submit();
+                  },)),
               const SizedBox(height: 50),
               Text("Already have an account"),
             ],
