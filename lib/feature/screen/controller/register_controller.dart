@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_project/app/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,6 +20,13 @@ class RegisterController extends GetxController {
             );
         if(credential != null){
          Get.toNamed(AppPages.itemView);
+         FirebaseFirestore.instance.collection("users").doc(emailController.text).set(
+           {
+             "Name":"Lincon",
+             "Email":emailController.text,
+             "password":passwordController.text
+           }
+         );
         }
       } on FirebaseAuthException catch (e) {
         print(e);

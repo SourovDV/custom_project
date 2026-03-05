@@ -16,7 +16,7 @@ class LoginView extends GetView<LoginController> {
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(height: 120,),
+              SizedBox(height: 120),
               Text(
                 "Login Here",
                 style: TextStyle(
@@ -25,15 +25,34 @@ class LoginView extends GetView<LoginController> {
                   color: AppColor.primaryColor,
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 10),
               Text(
                 "Welcome Back You Have Been Missed",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20,),
-              CommonTextField(text: "Email", icons: Icon(Icons.email_outlined)),
-              SizedBox(height: 10,),
-              CommonTextField(text: "Password", icons: Icon(Icons.password)),
+              SizedBox(height: 20),
+              Form(
+                key: controller.key,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: "Email",
+                        prefixIcon: Icon(Icons.email_outlined),
+                      ),
+                      controller: controller.emailController,
+                    ),
+                    SizedBox(height: 10),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: "Password",
+                        prefixIcon: Icon(Icons.email_outlined),
+                      ),
+                      controller: controller.passwordController,
+                    ),
+                  ],
+                ),
+              ),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -45,10 +64,15 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               const SizedBox(height: 20),
-              CommonButton(text: 'Sign In',data:()=>controller.moveToProduct(),),
+              CommonButton(
+                text: 'Sign In',
+                data: () => controller.submitButton(),
+              ),
               const SizedBox(height: 50),
-        
-              Text("Create New Account"),
+
+              InkWell(
+                  onTap: controller.moveToRegister,
+                  child: Text("Create New Account")),
             ],
           ),
         ),

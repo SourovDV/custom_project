@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:custom_project/app/appColor.dart';
 import 'package:custom_project/feature/screen/controller/products_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,14 +9,6 @@ class ProductView extends GetView<ProductController> {
   
   @override
   Widget build(BuildContext context) {
-  List<String> sliderData = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTEFxQjptr_kzGnuP1eI6Ns1Dqyk2621t3w&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTEFxQjptr_kzGnuP1eI6Ns1Dqyk2621t3w&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTEFxQjptr_kzGnuP1eI6Ns1Dqyk2621t3w&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTEFxQjptr_kzGnuP1eI6Ns1Dqyk2621t3w&s",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWTEFxQjptr_kzGnuP1eI6Ns1Dqyk2621t3w&s",
-  ];
-
   List<Map<String,String>> showData = [
     {
       "icon": "assets/download (1).jpeg",
@@ -72,7 +63,7 @@ class ProductView extends GetView<ProductController> {
   ];
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(leading: Icon(Icons.menu), actions: [Icon(Icons.search)]),
+        appBar: AppBar(leading: Icon(Icons.menu), actions: [IconButton(onPressed: controller.logOutUser, icon: Icon(Icons.logout))]),
         body: Column(
           children: [
             controller.slider.isEmpty ? Center(child: CircularProgressIndicator()) : CarouselSlider.builder(
