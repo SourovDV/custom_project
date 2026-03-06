@@ -6,163 +6,230 @@ import 'package:get/get.dart';
 
 class ProductView extends GetView<ProductController> {
   const ProductView({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-  List<Map<String,String>> showData = [
-    {
-      "icon": "assets/download (1).jpeg",
-    },
-    {
-      "icon": "assets/download (1).png",
-    },
-    {
-      "icon": "assets/images (1).png",
-    },
-    {
-      "icon": "assets/download (1).png",
-    },
-    {
-      "icon": "assets/download (1).jpeg",
-    },
-    {
-      "icon": "assets/images (1).png",
-    },
-  ];
-  List<Map<String,String>> detailsData = [
-    {
-      "Name":"Watch",
-      "price":"500",
-      "Image":"assets/watch.png"
-    },
-    {
-      "Name":"Shoes",
-      "price":"500",
-      "Image":"assets/shoes.jpeg"
-    },
-    {
-      "Name":"Sunglasses",
-      "price":"500",
-      "Image":"assets/sunglasses.jpg"
-    },
-    {
-      "Name":"Watch",
-      "price":"500",
-      "Image":"assets/watch.png"
-    },
-    {
-      "Name":"Sunglasses",
-      "price":"500",
-      "Image":"assets/sunglasses.jpg"
-    },
-    {
-      "Name":"Shoes",
-      "price":"500",
-      "Image":"assets/shoes.jpeg"
-    }
-  ];
+    List<Map<String, String>> showData = [
+      {"icon": "assets/download (1).jpeg"},
+      {"icon": "assets/download (1).png"},
+      {"icon": "assets/images (1).png"},
+      {"icon": "assets/download (1).png"},
+      {"icon": "assets/download (1).jpeg"},
+      {"icon": "assets/images (1).png"},
+    ];
+    List<Map> detailsData = [
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+      {
+        "id": "1",
+        "col_id": "1",
+        "Name": "Watch",
+        "price": "500",
+        "Image": "assets/watch.png",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","10"],
+      },
+
+    ];
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(leading: Icon(Icons.menu), actions: [IconButton(onPressed: controller.logOutUser, icon: Icon(Icons.logout))]),
+        appBar: AppBar(
+          leading: Icon(Icons.menu),
+          actions: [
+            IconButton(
+              onPressed: controller.logOutUser,
+              icon: Icon(Icons.logout),
+            ),
+          ],
+        ),
         body: Column(
           children: [
-            controller.slider.isEmpty ? Center(child: CircularProgressIndicator()) : CarouselSlider.builder(
-              itemCount: controller.slider.length,
-              itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex){
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(image: NetworkImage(controller.slider[itemIndex]["image"]),
-                        fit: BoxFit.cover),
+            controller.slider.isEmpty
+                ? Center(child: CircularProgressIndicator())
+                : CarouselSlider.builder(
+                    itemCount: controller.slider.length,
+                    itemBuilder:
+                        (
+                          BuildContext context,
+                          int itemIndex,
+                          int pageViewIndex,
+                        ) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                  controller.slider[itemIndex]["image"],
+                                ),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          );
+                        },
+                    options: CarouselOptions(
+                      height: 200,
+                      autoPlay: true,
+                      autoPlayCurve: Curves.easeInOut,
+                      enableInfiniteScroll: true,
+                      enlargeCenterPage: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                      viewportFraction: 0.8,
+                    ),
                   ),
-                );
-              },
-              options: CarouselOptions(
-                height: 200,
-                autoPlay: true,
-                autoPlayCurve: Curves.easeInOut,
-                enableInfiniteScroll: true,
-                enlargeCenterPage: true,
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                viewportFraction: 0.8,
-              ),
-            ),
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-              Text("Top Cotegories"),
-              Text("see All ")
-            ],),
-            SizedBox(height: 10,),
-            StreamBuilder(stream: FirebaseFirestore.instance.collection("collection").snapshots(),
-                builder: (_,snapshot){
-                    if(snapshot.connectionState == ConnectionState.waiting){
-                      return Center(child: CircularProgressIndicator(),);
-                    }
-                    else{
-                      return SizedBox(
-                        height: 80,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            primary: false,
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context,index){
-                              return Container(
-                                margin: EdgeInsets.only(right: 10),
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Colors.grey,
-                                ),
-                                child: Image.network(snapshot.data!.docs[index]["icon"]),
-                              );
-                            }),
-                      );
-                    }
-                }),
-            SizedBox(height: 20,),
-            Expanded(
-               child: GridView.builder(
-                 itemCount: showData.length,
-                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: 0.8),
-                   itemBuilder: (context,index){
-                      return InkWell(
-                        onTap:()=>controller.goToAnotherPage(detailsData[index]),
-                        child: Container(
-                          margin: EdgeInsets.all(10),
+              children: [Text("Top Cotegories"), Text("see All ")],
+            ),
+            SizedBox(height: 10),
+            StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("collection")
+                  .snapshots(),
+              builder: (_, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else {
+                  return SizedBox(
+                    height: 80,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      primary: false,
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.only(right: 10),
+                          width: 80,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            border: BoxBorder.all(color: Colors.black)
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.grey,
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Image.network(
+                            snapshot.data!.docs[index]["icon"],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }
+              },
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: GridView.builder(
+                itemCount: showData.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.8,
+                ),
+                itemBuilder: (context, index) {
+                  return InkWell(
+
+                    child: Container(
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        border: BoxBorder.all(color: Colors.black),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Stack(
                               children: [
-                               Stack(
-                                 children: [
-                                   Container(
-                                     height: 120,
-                                     width: double.infinity,
-                                     child:  Center(child: Image.asset(detailsData[index]["Image"] ?? "assets/images.png",fit: BoxFit.cover,)),
-                                   ),
-                                   Align(child: Icon(Icons.favorite_border),alignment: Alignment.topRight)
-                                 ],
-                               ),
-                                Text(detailsData[index]["Name"] ?? "Watch"),
-                                Text(detailsData[index]["price"] ?? "100")
+                                Container(
+                                  height: 120,
+                                  width: double.infinity,
+                                  child: Center(
+                                    child: Image.asset(
+                                      detailsData[index]["Image"] ??
+                                          "assets/images.png",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  child: Icon(Icons.favorite_border),
+                                  alignment: Alignment.topRight,
+                                ),
                               ],
                             ),
-                          ),
+                            Text(detailsData[index]["Name"] ?? "Watch"),
+                            Text(detailsData[index]["price"] ?? "100"),
+                          ],
                         ),
-                      );
-                   })
-            )
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
-        )
+        ),
       ),
     );
   }
