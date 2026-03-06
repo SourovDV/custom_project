@@ -9,6 +9,8 @@ class ProductView extends GetView<ProductController> {
 
   @override
   Widget build(BuildContext context) {
+
+
     List<Map<String, String>> showData = [
       {"icon": "assets/download (1).jpeg"},
       {"icon": "assets/download (1).png"},
@@ -21,59 +23,59 @@ class ProductView extends GetView<ProductController> {
       {
         "id": "1",
         "col_id": "1",
-        "Name": "Watch",
-        "price": "500",
-        "Image": "assets/watch.png",
+        "Name": "Laptop",
+        "price": "5000",
+        "Image": "https://img.freepik.com/free-photo/laptop-with-sun-background_1232-429.jpg",
         "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
         "variant":["20","10"],
       },
       {
-        "id": "1",
+        "id": "2",
         "col_id": "1",
-        "Name": "Watch",
+        "Name": "Laptop",
+        "price": "50000",
+        "Image": "https://cdn.mos.cms.futurecdn.net/FUi2wwNdyFSwShZZ7LaqWf.jpg",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["20","50","58"],
+      },
+      {
+        "id": "3",
+        "col_id": "2",
+        "Name": "Watch pro max",
         "price": "500",
-        "Image": "assets/watch.png",
+        "Image": "https://m.media-amazon.com/images/I/81+d6eSA0eL._AC_UY1000_.jpg",
+        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
+        "variant":["5","10","20","10"],
+      },
+      {
+        "id": "4",
+        "col_id": "2",
+        "Name": "Watch pro",
+        "price": "8200",
+        "Image": "https://img.freepik.com/free-photo/stylish-golden-watch-white-surface_181624-27078.jpg?semt=ais_rp_50_assets&w=740&q=80",
         "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
         "variant":["20","10"],
       },
       {
-        "id": "1",
-        "col_id": "1",
-        "Name": "Watch",
+        "id": "5",
+        "col_id": "3",
+        "Name": "Shoes low prices",
         "price": "500",
-        "Image": "assets/watch.png",
+        "Image": "https://png.pngtree.com/png-vector/20241018/ourmid/pngtree-running-shoes-or-sneakers-on-a-transparent-background-png-image_14112954.png",
         "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
         "variant":["20","10"],
       },
       {
-        "id": "1",
-        "col_id": "1",
-        "Name": "Watch",
+        "id": "6",
+        "col_id": "3",
+        "Name": "Shoes high price",
         "price": "500",
-        "Image": "assets/watch.png",
+        "Image": "https://storage.apex4u.com/94547A28-1.jpg",
         "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
         "variant":["20","10"],
       },
       {
-        "id": "1",
-        "col_id": "1",
-        "Name": "Watch",
-        "price": "500",
-        "Image": "assets/watch.png",
-        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
-        "variant":["20","10"],
-      },
-      {
-        "id": "1",
-        "col_id": "1",
-        "Name": "Watch",
-        "price": "500",
-        "Image": "assets/watch.png",
-        "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem",
-        "variant":["20","10"],
-      },
-      {
-        "id": "1",
+        "id": "",
         "col_id": "1",
         "Name": "Watch",
         "price": "500",
@@ -178,55 +180,59 @@ class ProductView extends GetView<ProductController> {
             ),
             SizedBox(height: 20),
             Expanded(
-              child: GridView.builder(
-                itemCount: showData.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.8,
-                ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-
-                    child: Container(
-                      margin: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
-                        border: BoxBorder.all(color: Colors.black),
+              child: StreamBuilder(stream: FirebaseFirestore.instance.collection("product").snapshots(),
+                  builder: (context,snapshot){
+                    final getData = snapshot.data!.docs;
+                    return GridView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.8,
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  height: 120,
-                                  width: double.infinity,
-                                  child: Center(
-                                    child: Image.asset(
-                                      detailsData[index]["Image"] ??
-                                          "assets/images.png",
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  child: Icon(Icons.favorite_border),
-                                  alignment: Alignment.topRight,
-                                ),
-                              ],
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: ()=>controller.goToAnotherPage(getData[index]),
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              border: BoxBorder.all(color: Colors.black),
                             ),
-                            Text(detailsData[index]["Name"] ?? "Watch"),
-                            Text(detailsData[index]["price"] ?? "100"),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        height: 120,
+                                        width: double.infinity,
+                                        child: Center(
+                                          child: Image.network(
+                                              getData[index]["Image"] ??
+                                                "assets/images.png",
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      Align(
+                                        child: Icon(Icons.favorite_border),
+                                        alignment: Alignment.topRight,
+                                      ),
+                                    ],
+                                  ),
+                                  Text(getData[index]["Name"] ?? "Watch"),
+                                  Text(getData[index]["price"] ?? "100"),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }),
             ),
           ],
         ),

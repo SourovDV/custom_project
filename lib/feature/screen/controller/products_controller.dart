@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class ProductController extends GetxController{
-  void goToAnotherPage(Map<String ,String> product){
+  void goToAnotherPage(product){
     Get.toNamed(AppPages.detailsPage,arguments: product);
   }
 
@@ -14,7 +14,7 @@ class ProductController extends GetxController{
   Future<void> getSliderData()async{
     await FirebaseFirestore.instance.collection("banner").get().then((values){
       slider = values.docs;
-      print(values.docs);
+
     });
   }
   //for logout
@@ -22,9 +22,11 @@ class ProductController extends GetxController{
     FirebaseAuth.instance.signOut();
     Get.toNamed(AppPages.loginScreen);
   }
+
   @override
   void onInit() {
     getSliderData();
+
     super.onInit();
 
   }

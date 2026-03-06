@@ -25,7 +25,7 @@ class DetailsView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 20),
-                Center(child: Image.asset(data["Image"],fit: BoxFit.cover, height: 160,))
+                Center(child: Image.network(data["Image"],fit: BoxFit.cover, height: 160,))
               ],
             ),
           ),
@@ -111,21 +111,33 @@ class DetailsView extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   // 🔹 Size Selector
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [30, 35, 40, 45, 50, 60]
-                        .map(
-                          (size) => Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.grey),
-                        ),
-                        child: Text(size.toString()),
+
+                 SizedBox(
+                      height: 40,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: data["variant"].length,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: EdgeInsets.only(right: 10),
+                            width: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              data["variant"][index],
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    )
-                        .toList(),
-                  ),
+                    ),
+
 
                   const SizedBox(height: 20),
 
