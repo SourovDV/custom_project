@@ -1,12 +1,15 @@
+import 'package:custom_project/feature/screen/controller/details_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-class DetailsView extends StatelessWidget {
+class DetailsView extends GetView<DetailsController>{
   const DetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print(controller.selectVariant);
     final data = Get.arguments;
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -118,21 +121,29 @@ class DetailsView extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: data["variant"].length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: EdgeInsets.only(right: 10),
-                            width: 50,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Text(
-                              data["variant"][index],
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                          return InkWell(
+                            onTap: (){
+                              controller.selectIndex.value =index;
+                              controller.selectVariant = data["variant"][index];
+                              print("daadfsfsfs ${controller.selectVariant}");
+                            },
+                            child: Obx(()=>Container(
+                              margin: EdgeInsets.only(right: 10),
+                              width: 50,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color:controller.selectIndex.value == index ? Colors.red :Colors.blueGrey,
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                            ),
+                              child: Text(
+                                data["variant"][index],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )),
                           );
                         },
                       ),
